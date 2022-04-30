@@ -1,0 +1,12 @@
+<launch>
+  <arg name="scan_topic"  default="scan" />
+  <arg name="base_frame"  default="base_link"/>
+  <arg name="odom_frame"  default="odom"/>
+  
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+      <rosparam file="$(find project_mapping)/param/project_mapping_params.yaml" command="load"/>
+      <remap from="scan" to="$(arg scan_topic)"/>
+  </node>
+  
+  <node pkg="rviz" name="rviz" type="rviz" args="-d $(find project_mapping)/rviz/project_mapping_rviz.rviz" />
+</launch>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!--
+Ivan Milinkovic,2991905
+This launch file will run the project_localization_move script
+-->
+<launch>
+    <node pkg="project_localization" type="project_localization_move.py" name="move_client" output="screen"/>
+</launch>

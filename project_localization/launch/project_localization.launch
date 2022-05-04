@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+Ivan Milinkovic,2991905
+This launch file is main launch file, run it to do all localization work
+-->
+<launch>
+    <!-- scan topic for laserscan -->
+    <arg name="scan_topic" default="scan"/>
+    
+    <!-- map node -->
+    <arg name="map_file" default="$(find project_mapping)/map/project_mapping_map.yaml"/>
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
+​
+    <!-- amcl -->
+    <node pkg="amcl" type="amcl" name="amcl">
+        <!-- will load params from project_localization_params file -->
+        <rosparam file="$(find project_localization)/param/project_localization_params.yaml" command="load" />
+        <remap from="scan" to="$(arg scan_topic)"/>
+    </node>
+
+    <!-- start rviz -->
+    <node pkg="rviz" name="rviz" type="rviz" args="-d $(find project_localization)/rviz/project_localization_rviz.rviz" />
+
+    <!-- launch project_localization_move file to do moving and localization-->
+    <include file="$(find project_localization)/launch/project_localization_move.launch" />
+​
+</launch>

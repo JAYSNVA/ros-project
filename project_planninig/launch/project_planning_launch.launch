@@ -20,9 +20,11 @@
 
   <!--- Run Move Base -->
   <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml" />
+
+  <!-- Launch File -->
   <include file="$(find project_planninig)/launch/project_planning.launch" />
 
   <!-- Run Node file -->
-  <!-- <node pkg="project_planninig" type="project_planning_send_goal.py" name="move_action_client" output="screen"></node> -->
+  <node pkg="project_planninig" type="project_planning_send_goal.py" name="move_action_client" output="screen"></node>
 
 </launch>

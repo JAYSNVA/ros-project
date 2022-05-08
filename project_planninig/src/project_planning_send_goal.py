@@ -27,9 +27,9 @@ goal = MoveBaseGoal()
 goal.target_pose.header.frame_id = 'map'
 goal.target_pose.pose.position.x = 0.0145
 goal.target_pose.pose.position.y = 0.3431
-goal.target_pose.pose.position.z = -7.7898
-goal.target_pose.pose.orientation.x = -0.0001
-goal.target_pose.pose.orientation.y = -2.732491
+goal.target_pose.pose.position.z = 0
+goal.target_pose.pose.orientation.x = 0
+goal.target_pose.pose.orientation.y = 0
 goal.target_pose.pose.orientation.z = -0.012642
 goal.target_pose.pose.orientation.w = 0.99992
 

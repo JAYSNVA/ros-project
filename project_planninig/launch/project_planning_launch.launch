@@ -24,7 +24,7 @@
   <!-- Launch File -->
   <include file="$(find project_planninig)/launch/project_planning.launch" />
 
-  <!-- Run Node file -->
+  <!-- Run Python file -->
   <node pkg="project_planninig" type="project_planning_send_goal.py" name="move_action_client" output="screen"></node>
 
 </launch>

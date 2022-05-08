@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Scan topic for Laserscan -->
+  <arg name="scan_topic" default="scan"/>
+
+  <!-- Run the map server -->
+  <arg name="map_file" default="$(find project_mapping)/map/project_mapping_map.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <!--- Run AMCL -->
+  <include file="$(find turtlebot_navigation)/launch/includes/amcl/amcl.launch.xml" />
+    <node pkg="amcl" type="amcl" name="amcl_path">
+        <rosparam file="$(find project_planninig)/params/localization.yaml" command="load" />
+        <remap from="scan" to="$(arg scan_topic)"/>
+    </node>
+
+  <!-- Start Rviz -->
+  <node pkg="rviz" name="rviz" type="rviz" args="-d $(find project_planninig)/rviz/project_planning_rviz.rviz" />
+
+  <!--- Run Move Base -->
+  <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml" />
+  <include file="$(find project_planninig)/launch/project_planning.launch" />
+
+  <!-- Run Node file -->
+  <!-- <node pkg="project_planninig" type="project_planning_send_goal.py" name="move_action_client" output="screen"></node> -->
+
+</launch>
